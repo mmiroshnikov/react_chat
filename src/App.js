@@ -311,24 +311,93 @@ class PersistentDrawerLeft extends React.Component {
 
 
           <div className={classes.root}>
+          {/* М второй таб */}
 
+
+        {/* М левый бар */}
         <AppBar position="static">
-          <Tabs value={value} onChange={this.handleChange} variant="scrollable" scrollButtons="off">
-            <Tab icon={<PhoneIcon />} />
-            <Tab icon={<FavoriteIcon />} />
-            <Tab icon={<PersonPinIcon />} />
-            <Tab icon={<HelpIcon />} />
-            <Tab icon={<ShoppingBasket />} />
-            <Tab icon={<ThumbDown />} />
-            <Tab icon={<ThumbUp />} />
-          </Tabs>
-        {value === 0 && <TabContainer>Item One</TabContainer>}
-        {value === 1 && <TabContainer>Item Two</TabContainer>}
-        {value === 2 && <TabContainer>Item Three</TabContainer>}
-        {value === 3 && <TabContainer>Item Four</TabContainer>}
-        {value === 4 && <TabContainer>Item Five</TabContainer>}
-        {value === 5 && <TabContainer>Item Six</TabContainer>}
-        {value === 6 && <TabContainer>Item Seven</TabContainer>}
+
+          {value === 0 && <TabContainer>
+
+
+        {/* М Лист */}
+        <List className={classes.rows}>
+          <ListItem alignItems="flex-start">
+            <ListItemAvatar>
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            </ListItemAvatar>
+            <ListItemText
+              primary="Brunch this weekend?"
+              secondary={
+                <React.Fragment>
+                  <Typography component="span" className={classes.inline} color="textPrimary">
+                    Ali Connors
+                  </Typography>
+                  {" — I'll be in your neighborhood doing errands this…"}
+                </React.Fragment>
+              }
+            />
+          </ListItem>
+          <ListItem alignItems="flex-start">
+            <ListItemAvatar>
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+            </ListItemAvatar>
+            <ListItemText
+              primary="Summer BBQ"
+              secondary={
+                <React.Fragment>
+                  <Typography component="span" className={classes.inline} color="textPrimary">
+                    to Scott, Alex, Jennifer
+                  </Typography>
+                  {" — Wish I could come, but I'm out of town this…"}
+                </React.Fragment>
+              }
+            />
+          </ListItem>
+          <ListItem alignItems="flex-start">
+            <ListItemAvatar>
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/3.jpg" />
+            </ListItemAvatar>
+            <ListItemText
+              primary="Oui Oui"
+              secondary={
+                <React.Fragment>
+                  <Typography component="span" className={classes.inline} color="textPrimary">
+                    Sandra Adams
+                  </Typography>
+                  {' — Do you have Paris recommendations? Have you ever…'}
+                </React.Fragment>
+              }
+            />
+          </ListItem>
+        </List>
+
+
+          </TabContainer>}
+
+
+
+              {value === 1 && <TabContainer>
+
+              {/* М второй таб */}
+
+
+
+
+          </TabContainer>}
+
+          <Tabs
+              value={this.state.value}
+              onChange={this.handleChange}
+              variant="fullWidth"
+              indicatorColor="secondary"
+              textColor="secondary"
+            >
+              <Tab icon={<FavoriteIcon />} label="FAVORITES" />
+              <Tab icon={<PersonPinIcon />} label="NEARBY" />
+            </Tabs>
+
+
         </AppBar>
       </div>
 
