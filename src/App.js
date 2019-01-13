@@ -63,6 +63,7 @@ const styles = theme => ({
     width: '100%',
   },
   rows: {
+    flex: 1,
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
