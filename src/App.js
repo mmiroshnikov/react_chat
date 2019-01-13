@@ -19,6 +19,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
+import TextField from '@material-ui/core/TextField';
+
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -80,7 +82,7 @@ const styles = theme => ({
 
 class PersistentDrawerLeft extends React.Component {
   state = {
-    open: false,
+    open: true,
   };
 
   handleDrawerOpen = () => {
@@ -128,6 +130,22 @@ class PersistentDrawerLeft extends React.Component {
           }}
         >
           <div className={classes.drawerHeader}>
+
+
+
+              <form className={classes.container} noValidate autoComplete="off">
+                <TextField
+                  id="standard-search"
+                  label="Search field"
+                  type="search"
+                  className={classes.textField}
+                  margin="normal"
+                />
+              </form>
+
+
+
+
             <IconButton onClick={this.handleDrawerClose}>
               {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
