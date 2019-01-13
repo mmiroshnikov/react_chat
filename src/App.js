@@ -14,18 +14,60 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+// import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+// import InboxIcon from '@material-ui/icons/MoveToInbox';
+// import MailIcon from '@material-ui/icons/Mail';
+
+import PhoneIcon from '@material-ui/icons/Phone';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import PersonPinIcon from '@material-ui/icons/PersonPin';
+import HelpIcon from '@material-ui/icons/Help';
+import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
+import ThumbDown from '@material-ui/icons/ThumbDown';
+import ThumbUp from '@material-ui/icons/ThumbUp';
+
 
 import TextField from '@material-ui/core/TextField';
 
-const drawerWidth = 240;
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Paper from '@material-ui/core/Paper';
+// import FavoriteIcon from '@material-ui/icons/Favorite';
+// import PersonPinIcon from '@material-ui/icons/PersonPin';
+
+
+
+// import List from '@material-ui/core/List';
+// import ListItem from '@material-ui/core/ListItem';
+// import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+// import Typography from '@material-ui/core/Typography';
+
+
+const drawerWidth = 320;
+
+
+
+
 
 const styles = theme => ({
   root: {
     display: 'flex',
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+  },
+  container: {
+    width: '100%',
+  },
+  rows: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -78,9 +120,40 @@ const styles = theme => ({
     }),
     marginLeft: 0,
   },
+  inline: {
+    display: 'inline',
+  },
 });
 
+
+
+function TabContainer(props) {
+  return (
+    <Typography component="div" style={{ padding: 8 * 3 }}>
+      {props.children}
+    </Typography>
+  );
+}
+
+TabContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+
+
+
+
 class PersistentDrawerLeft extends React.Component {
+
+  state = {
+    value: 0,
+  };
+
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
+
+
   state = {
     open: true,
   };
@@ -96,7 +169,8 @@ class PersistentDrawerLeft extends React.Component {
   render() {
     const { classes, theme } = this.props;
     const { open } = this.state;
-
+    // const { classes } = this.props;
+    const { value } = this.state;
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -151,23 +225,115 @@ class PersistentDrawerLeft extends React.Component {
             </IconButton>
           </div>
           <Divider />
-          <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
+
+
+
+
+
+
+          <List className={classes.rows}>
+      <ListItem alignItems="flex-start">
+        <ListItemAvatar>
+          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+        </ListItemAvatar>
+        <ListItemText
+          primary="Brunch this weekend?"
+          secondary={
+            <React.Fragment>
+              <Typography component="span" className={classes.inline} color="textPrimary">
+                Ali Connors
+              </Typography>
+              {" — I'll be in your neighborhood doing errands this…"}
+            </React.Fragment>
+          }
+        />
+      </ListItem>
+      <ListItem alignItems="flex-start">
+        <ListItemAvatar>
+          <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+        </ListItemAvatar>
+        <ListItemText
+          primary="Summer BBQ"
+          secondary={
+            <React.Fragment>
+              <Typography component="span" className={classes.inline} color="textPrimary">
+                to Scott, Alex, Jennifer
+              </Typography>
+              {" — Wish I could come, but I'm out of town this…"}
+            </React.Fragment>
+          }
+        />
+      </ListItem>
+      <ListItem alignItems="flex-start">
+        <ListItemAvatar>
+          <Avatar alt="Remy Sharp" src="/static/images/avatar/3.jpg" />
+        </ListItemAvatar>
+        <ListItemText
+          primary="Oui Oui"
+          secondary={
+            <React.Fragment>
+              <Typography component="span" className={classes.inline} color="textPrimary">
+                Sandra Adams
+              </Typography>
+              {' — Do you have Paris recommendations? Have you ever…'}
+            </React.Fragment>
+          }
+        />
+      </ListItem>
+    </List>
+
+
+
+
+
+
+
+
+
+
+          {/* <Paper square className={classes.root}>
+            <Tabs
+              value={this.state.value}
+              onChange={this.handleChange}
+              variant="fullWidth"
+              indicatorColor="secondary"
+              textColor="secondary"
+            >
+              <Tab icon={<FavoriteIcon />} label="FAVORITES" />
+              <Tab icon={<PersonPinIcon />} label="NEARBY" />
+            </Tabs>
+          </Paper> */}
+
+
+
+
+
+
+          <div className={classes.root}>
+
+        <AppBar position="static">
+          <Tabs value={value} onChange={this.handleChange} variant="scrollable" scrollButtons="off">
+            <Tab icon={<PhoneIcon />} />
+            <Tab icon={<FavoriteIcon />} />
+            <Tab icon={<PersonPinIcon />} />
+            <Tab icon={<HelpIcon />} />
+            <Tab icon={<ShoppingBasket />} />
+            <Tab icon={<ThumbDown />} />
+            <Tab icon={<ThumbUp />} />
+          </Tabs>
+        {value === 0 && <TabContainer>Item One</TabContainer>}
+        {value === 1 && <TabContainer>Item Two</TabContainer>}
+        {value === 2 && <TabContainer>Item Three</TabContainer>}
+        {value === 3 && <TabContainer>Item Four</TabContainer>}
+        {value === 4 && <TabContainer>Item Five</TabContainer>}
+        {value === 5 && <TabContainer>Item Six</TabContainer>}
+        {value === 6 && <TabContainer>Item Seven</TabContainer>}
+        </AppBar>
+      </div>
+
+
+
+
         </Drawer>
         <main
           className={classNames(classes.content, {
@@ -175,30 +341,16 @@ class PersistentDrawerLeft extends React.Component {
           })}
         >
           <div className={classes.drawerHeader} />
-          <Typography paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent
-            elementum facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in
-            hendrerit gravida rutrum quisque non tellus. Convallis convallis tellus id interdum
-            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing.
-            Amet nisl suscipit adipiscing bibendum est ultricies integer quis. Cursus euismod quis
-            viverra nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum leo.
-            Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus
-            at augue. At augue eget arcu dictum varius duis at consectetur lorem. Velit sed
-            ullamcorper morbi tincidunt. Lorem donec massa sapien faucibus et molestie ac.
-          </Typography>
-          <Typography paragraph>
-            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-            facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-            tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-            consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus
-            sed vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in.
-            In hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-            et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique
-            sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo
-            viverra maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
-            ultrices sagittis orci a.
-          </Typography>
+
+
+
+
+
+
+
+
+
+
         </main>
       </div>
     );
