@@ -81,8 +81,6 @@ const styles = theme => ({
   },
   tabs: {
     flex: 1,
-    flexGrow: '1',
-    // backgroundColor: theme.palette.background.paper,
   },
   tab: {
     flex: 1,
@@ -222,7 +220,10 @@ class PersistentDrawerLeft extends React.Component {
 
 
               <form className={classes.container} noValidate autoComplete="off">
-                <TextField
+              <TextField
+                  classes={{
+                    'flex-grow': '1'
+                  }}
                   id="standard-search"
                   label="Search field"
                   type="search"
@@ -319,8 +320,7 @@ class PersistentDrawerLeft extends React.Component {
 
           <Tabs
               ref="tabs"
-              value={0}
-              // initialSelectedIndex={0}
+              value={this.state.value}
               onChange={this.handleChange}
               variant="fullWidth"
               indicatorColor="secondary"
