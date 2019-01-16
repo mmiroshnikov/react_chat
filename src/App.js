@@ -71,6 +71,13 @@ const styles = theme => ({
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
+  tabsCont: {
+    minHeight: '100%',
+  },
+  tabs: {
+    minHeight: '100%',
+    backgroundColor: theme.palette.background.paper,
+  },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
@@ -233,14 +240,14 @@ class PersistentDrawerLeft extends React.Component {
 
 
 
-        <Paper square className={classes.root}>
+        <Paper className={classes.tabsCont}>
           {/* М первый таб */}
 
 
 
 
         {/* М левый бар */}
-        <AppBar position="static">
+        <AppBar position="static" className={classes.tabs}>
 
           {value === 0 && <TabContainer>
 
