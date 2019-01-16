@@ -63,20 +63,31 @@ const styles = theme => ({
   container: {
     width: '100%',
   },
-  rows: {
+  papr: {
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
+  },
+  rows: {
+    flex: 1,
+    flexDirection: 'column',
     width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: 'red',
   },
   tabsCont: {
-    minHeight: '100%',
+    backgroundColor: theme.palette.background.paper,
+    flex: 1,
   },
   tabs: {
-    minHeight: '100%',
-    backgroundColor: theme.palette.background.paper,
+    flex: 1,
+    flexGrow: '1',
+    // backgroundColor: theme.palette.background.paper,
+  },
+  tab: {
+    flex: 1,
+    flexGrow: '1',
+    backgroundColor: 'red',
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -138,7 +149,7 @@ const styles = theme => ({
 
 function TabContainer(props) {
   return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
+    <Typography component="div" style={{ padding: 8 * 3, flexGrow: 1 }}>
       {props.children}
     </Typography>
   );
@@ -240,79 +251,73 @@ class PersistentDrawerLeft extends React.Component {
 
 
 
-        <Paper className={classes.tabsCont}>
-          {/* М первый таб */}
-
-
-
+      <Paper className={classes.papr}>
+        {/* М первый таб */}
 
         {/* М левый бар */}
-        <AppBar position="static" className={classes.tabs}>
+        <AppBar position="static" className={classes.tabsCont}>
 
           {value === 0 && <TabContainer>
-
-                {/* М Лист */}
-                <List className={classes.rows}>
-                  <ListItem alignItems="flex-start">
-                    <ListItemAvatar>
-                      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="Brunch this weekend?"
-                      secondary={
-                        <React.Fragment>
-                          <Typography component="span" className={classes.inline} color="textPrimary">
-                            Ali Connors
-                          </Typography>
-                          {" — I'll be in your neighborhood doing errands this…"}
-                        </React.Fragment>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem alignItems="flex-start">
-                    <ListItemAvatar>
-                      <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="Summer BBQ"
-                      secondary={
-                        <React.Fragment>
-                          <Typography component="span" className={classes.inline} color="textPrimary">
-                            to Scott, Alex, Jennifer
-                          </Typography>
-                          {" — Wish I could come, but I'm out of town this…"}
-                        </React.Fragment>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem alignItems="flex-start">
-                    <ListItemAvatar>
-                      <Avatar alt="Remy Sharp" src="/static/images/avatar/3.jpg" />
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="Oui Oui"
-                      secondary={
-                        <React.Fragment>
-                          <Typography component="span" className={classes.inline} color="textPrimary">
-                            Sandra Adams
-                          </Typography>
-                          {' — Do you have Paris recommendations? Have you ever…'}
-                        </React.Fragment>
-                      }
-                    />
-                  </ListItem>
-                </List>
-
-
+            {/* М Лист */}
+            <List className={classes.rows}>
+              <ListItem alignItems="flex-start">
+                <ListItemAvatar>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                </ListItemAvatar>
+                <ListItemText
+                  primary="Brunch this weekend?"
+                  secondary={
+                    <React.Fragment>
+                      <Typography component="span" className={classes.inline} color="textPrimary">
+                        Ali Connors
+                      </Typography>
+                      {" — I'll be in your neighborhood doing errands this…"}
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+              <ListItem alignItems="flex-start">
+                <ListItemAvatar>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </ListItemAvatar>
+                <ListItemText
+                  primary="Summer BBQ"
+                  secondary={
+                    <React.Fragment>
+                      <Typography component="span" className={classes.inline} color="textPrimary">
+                        to Scott, Alex, Jennifer
+                      </Typography>
+                      {" — Wish I could come, but I'm out of town this…"}
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+              <ListItem alignItems="flex-start">
+                <ListItemAvatar>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/3.jpg" />
+                </ListItemAvatar>
+                <ListItemText
+                  primary="Oui Oui"
+                  secondary={
+                    <React.Fragment>
+                      <Typography component="span" className={classes.inline} color="textPrimary">
+                        Sandra Adams
+                      </Typography>
+                      {' — Do you have Paris recommendations? Have you ever…'}
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+            </List>
           </TabContainer>}
 
 
-          {value === 1 && <TabContainer>
+          {value === 1 && <TabContainer  className={classes.tabs}>
             {/* М второй таб */}
             Second tab
           </TabContainer>}
 
-            <Tabs
+          <Tabs
               ref="tabs"
               value={0}
               // initialSelectedIndex={0}
@@ -323,7 +328,7 @@ class PersistentDrawerLeft extends React.Component {
             >
               <Tab icon={<FavoriteIcon />} label="FAVORITES" />
               <Tab icon={<PersonPinIcon />} label="NEARBY" />
-            </Tabs>
+          </Tabs>
 
 
         </AppBar>
