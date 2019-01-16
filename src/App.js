@@ -18,16 +18,15 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 // import InboxIcon from '@material-ui/icons/MoveToInbox';
 // import MailIcon from '@material-ui/icons/Mail';
-import SwipeableViews from 'react-swipeable-views';
 
 
-import PhoneIcon from '@material-ui/icons/Phone';
+// import PhoneIcon from '@material-ui/icons/Phone';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
-import HelpIcon from '@material-ui/icons/Help';
-import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
-import ThumbDown from '@material-ui/icons/ThumbDown';
-import ThumbUp from '@material-ui/icons/ThumbUp';
+// import HelpIcon from '@material-ui/icons/Help';
+// import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
+// import ThumbDown from '@material-ui/icons/ThumbDown';
+// import ThumbUp from '@material-ui/icons/ThumbUp';
 
 
 import TextField from '@material-ui/core/TextField';
@@ -150,16 +149,11 @@ class PersistentDrawerLeft extends React.Component {
 
   state = {
     value: 0,
-  };
-
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
-
-  state = {
     open: true,
   };
+
+
+
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -243,6 +237,8 @@ class PersistentDrawerLeft extends React.Component {
           {/* М первый таб */}
 
 
+
+
         {/* М левый бар */}
         <AppBar position="static">
 
@@ -309,24 +305,24 @@ class PersistentDrawerLeft extends React.Component {
             Second tab
           </TabContainer>}
 
-          <Tabs
-              value={this.state.value}
+            <Tabs
+              ref="tabs"
+              value={0}
+              // initialSelectedIndex={0}
               onChange={this.handleChange}
               variant="fullWidth"
-              // indicatorColor="secondary"
-              // textColor="secondary"
+              indicatorColor="secondary"
+              textColor="secondary"
             >
               <Tab icon={<FavoriteIcon />} label="FAVORITES" />
               <Tab icon={<PersonPinIcon />} label="NEARBY" />
             </Tabs>
 
-            </AppBar>
+
+        </AppBar>
 
 
       </Paper>
-
-
-
 
         </Drawer>
         <main
@@ -337,14 +333,13 @@ class PersistentDrawerLeft extends React.Component {
           <div className={classes.drawerHeader} />
 
 
-
-
-
-
         </main>
       </div>
     );
   }
+  handleChange = (event, val) => {
+    this.setState({ value: val });
+  };
 }
 
 PersistentDrawerLeft.propTypes = {
