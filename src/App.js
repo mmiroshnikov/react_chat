@@ -52,17 +52,13 @@ import deepOrange from '@material-ui/core/colors/deepOrange';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
+
+
 const drawerWidth = 320;
-
-
-
-
-
 const styles = theme => ({
   root: {
     display: 'flex',
-    width: '100%',
-    maxWidth: 360,
+    height: '100vh',
     backgroundColor: theme.palette.background.paper,
   },
   container: {
@@ -130,6 +126,9 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
+    // position: 'relative',
+    marginTop: theme.spacing.unit * 8,
+    border: '10px solid red',
     padding: theme.spacing.unit * 3,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
@@ -252,6 +251,7 @@ class PersistentDrawerLeft extends React.Component {
 
             <form style={{
               paddingLeft: 8 * 2,
+              paddingBottom: 8,
               flexGrow: 1,
               flex: 1,
               }}
@@ -261,7 +261,7 @@ class PersistentDrawerLeft extends React.Component {
                   'minWidth': '100%',
                 }}
                 id="standard-search"
-                label="Search Chats"
+                label="Search Chats..."
                 type="search"
               />
             </form>
@@ -330,8 +330,8 @@ class PersistentDrawerLeft extends React.Component {
                   value={this.state.value}
                   onChange={this.handleChange}
                   variant="fullWidth"
-                  indicatorColor="secondary"
-                  textColor="secondary"
+                  indicatorColor="primary"
+                  textColor="primary"
                 >
                   <Tab icon={<FavoriteIcon />} label="FAVORITES" />
                   <Tab icon={<PersonPinIcon />} label="NEARBY" />
@@ -348,7 +348,6 @@ class PersistentDrawerLeft extends React.Component {
           })}
         >
           <div className={classes.drawerHeader} />
-
 
         </main>
       </div>
