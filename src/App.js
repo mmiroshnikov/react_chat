@@ -21,29 +21,14 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 
 // import PhoneIcon from '@material-ui/icons/Phone';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import PersonPinIcon from '@material-ui/icons/PersonPin';
-// import HelpIcon from '@material-ui/icons/Help';
-// import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
-// import ThumbDown from '@material-ui/icons/ThumbDown';
-// import ThumbUp from '@material-ui/icons/ThumbUp';
-
+import Chat from '@material-ui/icons/Chat';
+import Public from '@material-ui/icons/Public';
 
 import TextField from '@material-ui/core/TextField';
 
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Paper from '@material-ui/core/Paper';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-// import PersonPinIcon from '@material-ui/icons/PersonPin';
-
-
-
-// import List from '@material-ui/core/List';
-// import ListItem from '@material-ui/core/ListItem';
-// import ListItemText from '@material-ui/core/ListItemText';
-// import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-// import Typography from '@material-ui/core/Typography';
 
 
 import Avatar from '@material-ui/core/Avatar';
@@ -84,10 +69,17 @@ const styles = theme => ({
   tabs: {
     flex: 1,
   },
-  tab: {
-    flex: 1,
-    flexGrow: '1',
-    backgroundColor: 'red',
+  noChats0: {
+    flex:1,
+    position:'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noChats: {
+    flex: '0 0 10%',
+    padding: 8 * 3,
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -126,9 +118,11 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    // position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'stretch',
     marginTop: theme.spacing.unit * 8,
-    border: '10px solid red',
+    // border: '10px solid red',
     padding: theme.spacing.unit * 3,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
@@ -333,8 +327,8 @@ class PersistentDrawerLeft extends React.Component {
                   indicatorColor="primary"
                   textColor="primary"
                 >
-                  <Tab icon={<FavoriteIcon />} label="FAVORITES" />
-                  <Tab icon={<PersonPinIcon />} label="NEARBY" />
+                  <Tab icon={<Chat />} label="My Chats" />
+                  <Tab icon={<Public />} label="All Channels" />
               </Tabs>
 
             </AppBar>
@@ -342,13 +336,19 @@ class PersistentDrawerLeft extends React.Component {
           </Paper>
 
         </Drawer>
-        <main
-          className={classNames(classes.content, {
-            [classes.contentShift]: open,
-          })}
-        >
-          <div className={classes.drawerHeader} />
+        <main className={classNames(classes.content, {[classes.contentShift]: open})}>
 
+
+          <div className={classes.noChats0}>
+            <Paper className={classes.noChats} elevation={1}>
+              <Typography variant="h5" component="h3">
+               No chats yet.
+              </Typography>
+              <Typography component="p">
+                You're not needed.
+              </Typography>
+            </Paper>
+          </div>
         </main>
       </div>
     );
