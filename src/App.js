@@ -42,10 +42,15 @@ import Paper from '@material-ui/core/Paper';
 // import List from '@material-ui/core/List';
 // import ListItem from '@material-ui/core/ListItem';
 // import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
+// import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 // import Typography from '@material-ui/core/Typography';
 
+
+import Avatar from '@material-ui/core/Avatar';
+import deepOrange from '@material-ui/core/colors/deepOrange';
+
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 const drawerWidth = 320;
 
@@ -67,6 +72,7 @@ const styles = theme => ({
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
+    position: 'relative',
   },
   rows: {
     flex: 1,
@@ -141,13 +147,32 @@ const styles = theme => ({
   inline: {
     display: 'inline',
   },
-});
 
+  //AVATAR
+  avatar: {
+    margin: 10,
+  },
+  orangeAvatar: {
+    margin: 10,
+    color: '#fff',
+    backgroundColor: deepOrange[500],
+  },
+
+  //FAB
+  fab: {
+    position: 'absolute',
+    bottom: theme.spacing.unit * 12,
+    right: theme.spacing.unit * 4,
+    color: 'secondary',
+    zIndex: '10000',
+  },
+
+});
 
 
 function TabContainer(props) {
   return (
-    <Typography component="div" style={{ padding: 8 * 3, flexGrow: 1 }}>
+    <Typography component="div" style={{flexGrow: 1}}>
       {props.children}
     </Typography>
   );
@@ -183,6 +208,14 @@ class PersistentDrawerLeft extends React.Component {
     const { classes, theme } = this.props;
     const { open } = this.state;
     const { value } = this.state;
+
+    const fab = {
+      color: 'primary',
+      className: classes.fab,
+      icon: <AddIcon />
+    }
+
+
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -217,20 +250,21 @@ class PersistentDrawerLeft extends React.Component {
         >
           <div className={classes.drawerHeader}>
 
-
-
-              <form className={classes.container} noValidate autoComplete="off">
-              <TextField
-                  classes={{
-                    'flex-grow': '1'
-                  }}
-                  id="standard-search"
-                  label="Search field"
-                  type="search"
-                  className={classes.textField}
-                  margin="normal"
-                />
-              </form>
+            <form style={{
+              paddingLeft: 8 * 2,
+              flexGrow: 1,
+              flex: 1,
+              }}
+            className={classes.container} noValidate autoComplete="off">
+            <TextField
+                style={{
+                  'minWidth': '100%',
+                }}
+                id="standard-search"
+                label="Search Chats"
+                type="search"
+              />
+            </form>
 
 
 
@@ -239,6 +273,7 @@ class PersistentDrawerLeft extends React.Component {
               {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
           </div>
+
           <Divider />
 
 
@@ -248,93 +283,63 @@ class PersistentDrawerLeft extends React.Component {
 
 
 
+          <Paper className={classes.papr}>
+
+            {/* М фаб */}
+            <Fab size="medium" color={fab.color} aria-label="Add" className={fab.className}>
+              <AddIcon />
+            </Fab>
 
 
 
+            {/* М левый бар */}
+            <AppBar position="static" className={classes.tabsCont}>
 
-      <Paper className={classes.papr}>
-        {/* М первый таб */}
+              {value === 0 && <TabContainer>
+                {/* М Лист */}
+                <List className={classes.rows}>
+                  <ListItem alignItems="flex-start">
 
-        {/* М левый бар */}
-        <AppBar position="static" className={classes.tabsCont}>
+                    <Avatar className={classes.orangeAvatar}>N</Avatar>
 
-          {value === 0 && <TabContainer>
-            {/* М Лист */}
-            <List className={classes.rows}>
-              <ListItem alignItems="flex-start">
-                <ListItemAvatar>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Brunch this weekend?"
-                  secondary={
-                    <React.Fragment>
-                      <Typography component="span" className={classes.inline} color="textPrimary">
-                        Ali Connors
-                      </Typography>
-                      {" — I'll be in your neighborhood doing errands this…"}
-                    </React.Fragment>
-                  }
-                />
-              </ListItem>
-              <ListItem alignItems="flex-start">
-                <ListItemAvatar>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Summer BBQ"
-                  secondary={
-                    <React.Fragment>
-                      <Typography component="span" className={classes.inline} color="textPrimary">
-                        to Scott, Alex, Jennifer
-                      </Typography>
-                      {" — Wish I could come, but I'm out of town this…"}
-                    </React.Fragment>
-                  }
-                />
-              </ListItem>
-              <ListItem alignItems="flex-start">
-                <ListItemAvatar>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/3.jpg" />
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Oui Oui"
-                  secondary={
-                    <React.Fragment>
-                      <Typography component="span" className={classes.inline} color="textPrimary">
-                        Sandra Adams
-                      </Typography>
-                      {' — Do you have Paris recommendations? Have you ever…'}
-                    </React.Fragment>
-                  }
-                />
-              </ListItem>
-            </List>
-          </TabContainer>}
+                    <ListItemText
+                      primary="Brunch this weekend?"
+                      secondary={
+                        <React.Fragment>
+                          <Typography component="span" className={classes.inline} color="textPrimary">
+                            Ali Connors
+                          </Typography>
+                          {" — I'll be in your neighborhood doing errands this…"}
+                        </React.Fragment>
+                      }
+                    />
+                  </ListItem>
+
+                </List>
+              </TabContainer>}
 
 
-          {value === 1 && <TabContainer  className={classes.tabs}>
-            {/* М второй таб */}
-            Second tab
-          </TabContainer>}
+              {value === 1 && <TabContainer  className={classes.tabs}>
+                {/* М второй таб */}
+                Second tab
+              </TabContainer>}
 
-          <Tabs
-              ref="tabs"
-              value={this.state.value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="secondary"
-              textColor="secondary"
-            >
-              <Tab icon={<FavoriteIcon />} label="FAVORITES" />
-              <Tab icon={<PersonPinIcon />} label="NEARBY" />
-          </Tabs>
+              <Divider />
+              <Tabs
+                  ref="tabs"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  variant="fullWidth"
+                  indicatorColor="secondary"
+                  textColor="secondary"
+                >
+                  <Tab icon={<FavoriteIcon />} label="FAVORITES" />
+                  <Tab icon={<PersonPinIcon />} label="NEARBY" />
+              </Tabs>
 
+            </AppBar>
 
-        </AppBar>
-
-
-      </Paper>
+          </Paper>
 
         </Drawer>
         <main
